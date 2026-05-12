@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body id ="body">
+    <p id ="paragraf">alvaro ngaku rusdi</p>
+    <button onclick="berubah()">ambaro</button>
+    <button onclick="kembali()">rusdi</button>
+    <button onclick="warna()">amba</button>
+    <p onmouseenter="kembali()" onmouseleave="warna()">alvaro ngaku rusdi</p>
+    <script>
+        body = document.getElementById("body");
+        paragraf = document.getElementById("paragraf")
+        berubah = () => {
+            body.style.backgroundColor ="pink";
+            paragraf.style.fontSize ="25px";
+            paragraf.style.Color ="white";
+
+        };
+        kembali = () => {
+            body.style.backgroundColor ="blue";
+            paragraf.style.fontSize ="25px";
+        };
+        warna = () => {
+            body.style.backgroundColor ="purple";
+            paragraf.style.fontSize ="25px";
+        };
+        </script>
+    
+</body>
+</html>

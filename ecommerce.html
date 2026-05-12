@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce Store</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .saldo {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .card img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            background: #f0f0f0;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-body h2 {
+            color: #333;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .card-body p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .card-body h3 {
+            color: #00ff6a;
+            font-size: 20px;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+        }
+
+        .btn-primary:active {
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+<body id="body">
+  <div class="container">
+     <div class="saldo" id="saldo"></div>
+<div class="card-list" id="cardList"></div>
+     <script>  
+    let saldo = 1000000000;
+ const products = [
+    {
+        name: "kaos slank",
+        desc: "original.",
+        price: 235000,
+        img: "download.jpg"
+    },
+    {
+        name: "kaos kale",
+        desc: "membeli merchandise original.",
+        price: 250000,
+        img: "download (1).jpg"
+    },
+    {
+        name: "kaos alkateri",
+        desc: "laun nupenting ceurik.",
+        price: 285000,
+        img: "download (2).jpg"
+    }
+   
+];
+   function formatRupiah(amount) {
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+   }).format(amount);
+}
+  
+  cardList.innerHTML = products
+    .map((product, index) =>  {
+        return `
+        <div class="card">
+            <img src="${product.img}" >
+            <div class="card-body">
+                <h2>${product.name}</h2>
+                <p>${product.desc}</p>
+                <h3 style="color: rgb(0, 255, 106)">${formatRupiah(product.price)}</h3>
+                <button class="btn-primary beli" data-index=${index}>Beli</button>
+                </div>
+                </div>
+                `;
+         })
+
+         .join("")
+            const beliButtons = document.querySelectorAll(".beli");
+            beliButtons.forEach(button => {
+                button.addEventListener("click", function() {
+                    const index = this.getAttribute("data-index");
+                    const product = products[index];
+                    if (saldo >= product.price) {
+                        saldo -= product.price;
+                        alert(`Anda berhasil membeli ${product.name} seharga ${formatRupiah(product.price)}. Sisa saldo: ${formatRupiah(saldo)}`);
+                    } else {
+                        alert(`Saldo Anda tidak cukup untuk membeli ${product.name}. Saldo saat ini: ${formatRupiah(saldo)}`);
+                    }
+                    document.getElementById("saldo").textContent = `Saldo: ${formatRupiah(saldo)}`;
+                });
+            });
+         </script>  
+
+  
+    </body>   
+</html>
