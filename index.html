@@ -13,7 +13,7 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #000000 0%, #797979 100%);
             min-height: 100vh;
             padding: 20px;
         }
@@ -56,7 +56,7 @@
 
         .card img {
             width: 100%;
-            height: 400px;
+            height: 270px;
             object-fit: cover;
             background: #f0f0f0;
         }
@@ -85,14 +85,19 @@
             font-weight: bold;
         }
 
+        .card-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
         .btn-primary {
-            width: 100%;
+            flex: 1;
             padding: 12px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, hsla(192, 100%, 55%, 0.733) 0%, #000000 100%);
             color: white;
             border: none;
             border-radius: 8px;
-            font-size: 16px;
+            font-size: 14px;
             font-weight: bold;
             cursor: pointer;
             transition: opacity 0.3s ease;
@@ -105,76 +110,542 @@
         .btn-primary:active {
             transform: scale(0.98);
         }
+
+        .btn-buy {
+            flex: 1;
+            padding: 12px;
+            background: linear-gradient(135deg, #12ffdfb7 0%, #000000 100%);
+            color: #000;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+
+        .btn-buy:hover {
+            opacity: 0.9;
+        }
+
+        .btn-buy:active {
+            transform: scale(0.98);
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: white;
+            font-size: 28px;
+        }
+
+        .header-right {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .cart-btn {
+            position: relative;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+
+        .cart-btn:hover {
+            opacity: 0.9;
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ff6b6b;
+            color: white;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .modal-header h2 {
+            color: #333;
+            margin: 0;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 28px;
+            color: #666;
+            cursor: pointer;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-btn:hover {
+            color: #333;
+        }
+
+        .cart-items {
+            margin-bottom: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-name {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .cart-item-price {
+            color: #00ff6a;
+            font-weight: bold;
+        }
+
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 0 15px;
+        }
+
+        .qty-btn {
+            background: #f0f0f0;
+            border: none;
+            width: 25px;
+            height: 25px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .qty-btn:hover {
+            background: #ddd;
+        }
+
+        .cart-item-remove {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: opacity 0.3s ease;
+        }
+
+        .cart-item-remove:hover {
+            opacity: 0.9;
+        }
+
+        .cart-empty {
+            text-align: center;
+            padding: 30px;
+            color: #999;
+        }
+
+        .cart-summary {
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .summary-total {
+            font-size: 18px;
+            font-weight: bold;
+            color: #00ff6a;
+            padding-top: 8px;
+            border-top: 1px solid #ddd;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-checkout {
+            flex: 1;
+            padding: 12px;
+            background: linear-gradient(135deg, #34dfd6 0%, #020202 100%);
+            color: #000;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+
+        .btn-checkout:hover {
+            opacity: 0.9;
+        }
+
+        .btn-checkout:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn-continue {
+            flex: 1;
+            padding: 12px;
+            background: #ddd;
+            color: #333;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+
+        .btn-continue:hover {
+            opacity: 0.9;
+        }
+
+    
     </style>
 </head>
 <body id="body">
   <div class="container">
-     <div class="saldo" id="saldo"></div>
-<div class="card-list" id="cardList"></div>
-     <script>  
+    <div class="header">
+      <h1>🛍️ apip store</h1>
+      <div class="header-right">
+        <div class="saldo" id="saldo" style="margin-bottom: 0;"></div>
+        <button class="cart-btn" id="cartBtn">
+          🛒 Keranjang
+          <span class="cart-badge" id="cartBadge" style="display: none;">0</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="card-list" id="cardList"></div>
+
+    <!-- Cart Modal -->
+    <div class="modal" id="cartModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Keranjang Belanja</h2>
+          <button class="close-btn" id="closeCartBtn">&times;</button>
+        </div>
+        
+        <div class="cart-items" id="cartItems"></div>
+        
+        <div class="cart-summary" id="cartSummary" style="display: none;">
+          <div class="summary-row">
+            <span>Total Item:</span>
+            <span id="totalItems">0</span>
+          </div>
+          <div class="summary-row summary-total">
+            <span>Total Harga:</span>
+            <span id="totalPrice">Rp 0</span>
+          </div>
+        </div>
+
+        <div class="modal-buttons">
+          <button class="btn-continue" id="continueShopping">Lanjut Belanja</button>
+          <button class="btn-checkout" id="checkoutBtn" disabled>Checkout</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>  
     let saldo = 10000000;
- const products = [
-    {
+    let cart = [];
+ 
+    const products = [
+      {
         name: "kaos slank",
         desc: "original.",
         price: 235000,
-        img: "download.jpg"
-    },
-    {
-        name: "kaos kale",
+        img: "download.webp"
+      },
+      {
+        name: "kaos alkateri ",
         desc: "membeli merchandise original.",
         price: 250000,
         img: "download (1).jpg"
-    },
-    {
-        name: "kaos alkateri",
+      },
+      {
+        name: "kaos kale",
         desc: "laun nupenting ceurik.",
         price: 285000,
         img: "download (2).jpg"
+      },
+      {
+        name: "gantungan kunci slank",
+        desc: "koleksi terbaru dari band terkenal.",
+        price: 60000,
+        img: "images.jpg"
+      },
+      {
+        name: "kaos vintage",
+        desc: "gaya retro yang timeless dan stylish.",
+        price: 265000,
+        img: "download.jpg"
+      },
+      {
+        name: "bendera slank",
+        desc: "bahan berkualitas tinggi .",
+        price: 295000,
+        img: "images (1).jpg"
+      }
+    ];
+
+    function formatRupiah(amount) {
+      return new Intl.NumberFormat("id-ID", {
+        style: "currency",
+        currency: "IDR",
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+      }).format(amount);
     }
-   
-];
-   function formatRupiah(amount) {
-    return new Intl.NumberFormat("id-ID", {
-      style: "currency",
-      currency: "IDR",
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
-   }).format(amount);
-}
-  
-  cardList.innerHTML = products
-    .map((product, index) =>  {
-        return `
-        <div class="card">
-            <img src="${product.img}" >
+
+    function updateSaldoDisplay() {
+      document.getElementById("saldo").textContent = `Saldo: ${formatRupiah(saldo)}`;
+    }
+
+    function addToCart(index) {
+      const product = products[index];
+      const existingItem = cart.find(item => item.index === index);
+      
+      if (existingItem) {
+        existingItem.quantity++;
+      } else {
+        cart.push({
+          index: index,
+          name: product.name,
+          price: product.price,
+          quantity: 1
+        });
+      }
+      
+      updateCartDisplay();
+    }
+
+    function removeFromCart(index) {
+      cart = cart.filter(item => item.index !== index);
+      updateCartDisplay();
+    }
+
+    function changeQuantity(index, change) {
+      const item = cart.find(item => item.index === index);
+      if (item) {
+        item.quantity += change;
+        if (item.quantity <= 0) {
+          removeFromCart(index);
+        } else {
+          updateCartDisplay();
+        }
+      }
+    }
+
+    function calculateTotal() {
+      return cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+    }
+
+    function updateCartDisplay() {
+      const cartBadge = document.getElementById("cartBadge");
+      const totalItemsInCart = cart.reduce((sum, item) => sum + item.quantity, 0);
+      
+      if (totalItemsInCart > 0) {
+        cartBadge.textContent = totalItemsInCart;
+        cartBadge.style.display = "flex";
+      } else {
+        cartBadge.style.display = "none";
+      }
+
+      const cartItemsDiv = document.getElementById("cartItems");
+      const cartSummary = document.getElementById("cartSummary");
+      const checkoutBtn = document.getElementById("checkoutBtn");
+
+      if (cart.length === 0) {
+        cartItemsDiv.innerHTML = '<div class="cart-empty">Keranjang Anda kosong</div>';
+        cartSummary.style.display = "none";
+        checkoutBtn.disabled = true;
+      } else {
+        cartItemsDiv.innerHTML = cart.map(item => `
+          <div class="cart-item">
+            <div class="cart-item-info">
+              <div class="cart-item-name">${item.name}</div>
+              <div class="cart-item-price">${formatRupiah(item.price)}</div>
+            </div>
+            <div class="cart-item-quantity">
+              <button class="qty-btn" onclick="changeQuantity(${item.index}, -1)">-</button>
+              <span style="min-width: 20px; text-align: center;">${item.quantity}</span>
+              <button class="qty-btn" onclick="changeQuantity(${item.index}, 1)">+</button>
+            </div>
+            <button class="cart-item-remove" onclick="removeFromCart(${item.index})">Hapus</button>
+          </div>
+        `).join("");
+
+        const totalPrice = calculateTotal();
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        
+        document.getElementById("totalItems").textContent = totalItems;
+        document.getElementById("totalPrice").textContent = formatRupiah(totalPrice);
+        
+        cartSummary.style.display = "block";
+        checkoutBtn.disabled = saldo < totalPrice;
+      }
+    }
+
+    function renderProducts() {
+      const cardList = document.getElementById("cardList");
+      cardList.innerHTML = products
+        .map((product, index) => `
+          <div class="card">
+            <img src="${product.img}" alt="${product.name}">
             <div class="card-body">
-                <h2>${product.name}</h2>
-                <p>${product.desc}</p>
-                <h3 style="color: rgb(0, 255, 106)">${formatRupiah(product.price)}</h3>
-                <button class="btn-primary beli" data-index=${index}>Beli</button>
-                </div>
-                </div>
-                `;
-         })
+              <h2>${product.name}</h2>
+              <p>${product.desc}</p>
+              <h3 style="color: rgb(0, 255, 106)">${formatRupiah(product.price)}</h3>
+              <div class="card-buttons">
+                <button class="btn-primary" onclick="addToCart(${index})">🛒 Keranjang</button>
+                <button class="btn-buy" onclick="buyNow(${index})">💳 Beli</button>
+              </div>
+            </div>
+          </div>
+        `).join("");
+    }
 
-         .join("")
-            const beliButtons = document.querySelectorAll(".beli");
-            beliButtons.forEach(button => {
-                button.addEventListener("click", function() {
-                    const index = this.getAttribute("data-index");
-                    const product = products[index];
-                    if (saldo >= product.price) {
-                        saldo -= product.price;
-                        alert(`Anda berhasil membeli ${product.name} seharga ${formatRupiah(product.price)}. Sisa saldo: ${formatRupiah(saldo)}`);
-                    } else {
-                        alert(`Saldo Anda tidak cukup untuk membeli ${product.name}. Saldo saat ini: ${formatRupiah(saldo)}`);
-                    }
-                    document.getElementById("saldo").textContent = `Saldo: ${formatRupiah(saldo)}`;
-                });
-            });
-         </script>  
+    function checkout() {
+      const totalPrice = calculateTotal();
+      
+      if (saldo < totalPrice) {
+        alert("Saldo Anda tidak cukup untuk melakukan checkout!");
+        return;
+      }
+
+      saldo -= totalPrice;
+      const cartSummary = cart.map(item => `${item.name} x${item.quantity}`).join(", ");
+      
+      alert(`Checkout berhasil!\nBarang: ${cartSummary}\nTotal: ${formatRupiah(totalPrice)}\nSisa saldo: ${formatRupiah(saldo)}`);
+      
+      cart = [];
+      updateSaldoDisplay();
+      updateCartDisplay();
+      document.getElementById("cartModal").classList.remove("active");
+    }
+
+    function buyNow(index) {
+      const product = products[index];
+      
+      if (saldo >= product.price) {
+        saldo -= product.price;
+        alert(`Pembelian berhasil!\nProduk: ${product.name}\nHarga: ${formatRupiah(product.price)}\nSisa saldo: ${formatRupiah(saldo)}`);
+        updateSaldoDisplay();
+      } else {
+        alert(`Saldo Anda tidak cukup untuk membeli ${product.name}.\nHarga: ${formatRupiah(product.price)}\nSaldo Anda: ${formatRupiah(saldo)}`);
+      }
+    }
+
+    // Event Listeners
+    document.getElementById("cartBtn").addEventListener("click", function() {
+      document.getElementById("cartModal").classList.add("active");
+    });
+
+    document.getElementById("closeCartBtn").addEventListener("click", function() {
+      document.getElementById("cartModal").classList.remove("active");
+    });
+
+    document.getElementById("continueShopping").addEventListener("click", function() {
+      document.getElementById("cartModal").classList.remove("active");
+    });
+
+    document.getElementById("checkoutBtn").addEventListener("click", checkout);
+
+    document.getElementById("cartModal").addEventListener("click", function(e) {
+      if (e.target === this) {
+        this.classList.remove("active");
+      }
+    });
+
+    // Initialize
+    updateSaldoDisplay();
+    updateCartDisplay();
+    renderProducts();
+  </script>  
 
   
-    </body>   
+</body>   
 </html>
